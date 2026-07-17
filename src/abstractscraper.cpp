@@ -650,7 +650,7 @@ void AbstractScraper::detectRegionFromFilename(const QFileInfo &info) {
                 QString fn_regio = e.first;
                 QString sky_regio_key = e.second;
                 if (regionString.startsWith(fn_regio)) {
-                    qDebug() << "matched" << fn_regio;
+                    qDebug() << "    matched" << fn_regio;
                     // map to Skyscraper's short-names (sky_regio_key)
                     if (regionsInline) {
                         if (!regionPrios.contains(sky_regio_key) &&
