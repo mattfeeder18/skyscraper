@@ -67,10 +67,12 @@ Skyscraper will try to auto-detect the region from the file name. It will look f
 -   jp, kr, nl, se, sp
 -   tw, us, wor
 
-So if your files are named like `Game Name (Europe).zip`, there's no need to configure regions manually. Skyscraper will recognize `Europe` and verfifies if it is on the region prios list, unless you disabled the region from filename detection (see configuration option [regionFromFilename](CONFIGINI.md#regionfromfilename)). The default behaviour (`"inline"`) is:  
+So if your files are named like `Game Name (Europe).zip`, there's no need to configure regions manually. Skyscraper will recognize `Europe` and verfifies if it is on the region prios list, unless you disabled the region from filename detection (with `"off"`, see configuration option [regionFromFilename](CONFIGINI.md#regionfromfilename)). The default behaviour (`"inline"`) is:  
 - If a detected region is in the region prios list, then its position in the configured region prios is 'snapped' to the front for finding a scraping match for the game, preserving the order that these regions were already in the region prios list.
-- If it is not in the region prios list, then the detected region from the filename is added after the regions detetcted and already in region prios list, but before the remaining regions in the region prios (non-detected regions).
-- If you set `regionFromFilename` to `"first"`, then every detected region is prepended to the region list in the order they appear in the filename.
+- If it is not in the region prios list, then the detected region from the filename is added after the regions detetcted and already in region prios list, but before the remaining regions in the region prios (non-detected regions).  
+In contrast, if you set `regionFromFilename` to `"first"`, then every detected region is prepended to the region list in the order they appear in the filename.  
+See also examples at [regionFromFilename](CONFIGINI.md#regionfromfilename) configuration option.
+
 Skyscraper will process the region prios list from begin to end and checks the region on the list until it finds one that has data for the requested resource. Do not configure the region prios too narrow, as you might not find a match for every game in your collection then, always put some fail-safes at the end of the list.
 
 ### Default Region Prioritization

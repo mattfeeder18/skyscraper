@@ -804,7 +804,7 @@ region="de"
 
 #### regionFromFilename
 
-With this parameter (introduced with Skyscraper 3.20) you can control at which position detected regions from a game filename will be put. `first` means all detected region will be put first as in the order they are within the filename (this is the pre Skyscraper 3.20 behaviour). `inline` will pigeon-hole a detected region at the position at the region prios list, and will put any additionally detected region which is not on the region prios list at the end of the region prios list. The region prio list is calculated for each game file before performing the scraping.  
+With this parameter (introduced with Skyscraper 3.20) you can control at which position detected regions from a game filename will be put. `first` means all detected region will be put first as in the order they are within the filename (this is the pre Skyscraper 3.20 behaviour). FIXME wording (colo?), also examples below -- `inline` will pigeon-hole a detected region at the position at the region prios list, and will put any additionally detected region which is not on the region prios list at the end of the region prios list. The region prio list is calculated for each game file before performing the scraping.  
 You can also disable the filename detection of regions by setting this to `off`, then the region prio list will be processed as-is ignoring any region info from the game file names.
 
 Accepted values: `first`, `inline`, `off`  
@@ -856,7 +856,7 @@ will result in the region prio list
 #### regionPrios
 
 Completely overwrites the internal region priority list inside of Skyscraper. Multiple regions can be configured here separated by commas. Read more about how [regions are handled in general](REGIONS.md). Do not configure the region prios too narrow, as you might not find a match for every game in your collection then, always put one or some fail-safe(s) at the end of the list.
-Any region [auto-detected](REGIONS.md#region-auto-detection) from the file name will still be added to the beginning of the region prios list in the order they are in the filename (see `first` mode under [regionsFromFilename](#regionsfromfilename)), or 'snapped' to the front of the region prio list in the order they are in the region prio list already, inserting detected but non-prioritised regions immediately after before any non-detected regions (see `inline` mode under [regionsFromFilename](#regionsfromfilename)). If [regionsFromFilename](#regionsfromfilename) is set to `off`, then no regions are detected from the filename and regionPrios kicks in, unless [region](#region) is set.
+Any region [auto-detected](REGIONS.md#region-auto-detection) from the file name will still be added to the beginning of the region prios list in the order they are in the filename (see `first` mode under [regionsFromFilename](#regionsfromfilename)), or 'snapped' to the front of the region prio list in the order they are in the region prio list already, inserting detected but non-prioritised regions immediately after before any non-detected regions (see `inline` mode under [regionsFromFilename](#regionsfromfilename)). If [regionsFromFilename](#regionsfromfilename) is set to `off`, then no regions are detected from the filename and regionPrios is authorative, unless [region](#region) is set.
 
 Default value: `eu, us, ss, uk, wor, jp, au, ame, de, cus, cn, kr, asi, br, sp, fr, gr, it, no, dk, nz, nl, pl, ru, se, tw, ca`  
 Allowed in sections: `[main]`, `[<PLATFORM>]`

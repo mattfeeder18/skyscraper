@@ -97,25 +97,27 @@ private slots:
         settings.regionFromFilename = "inline";
         scraper = new AbstractScraper(&settings, NULL);
 
-        QList<QString> regionPriosExp = settings.regionPrios;
+        QList<QString> regionPriosExp = QStringList({"us", "jp", "eu", "br"});
         matchRegion("Game A (Japan, USA).zip", regionPriosExp);
         matchRegion("Game A' (us, jp).zip", regionPriosExp);
 
+        regionPriosExp = QStringList({"eu", "us", "br", "jp"});
         matchRegion("Game B (USA, Europe).zip", regionPriosExp);
 
         // "wor" should be last as there is no match in regionPrios
-        regionPriosExp = settings.regionPrios + QStringList({"wor"});
+        // FIXME comment
+        regionPriosExp = QStringList({"eu", "us", "wor", "br", "jp"});
         matchRegion("Game C (USA, World, Europe).zip", regionPriosExp);
 
         settings.regionPrios = QStringList({"jp", "eu"});
-        regionPriosExp = QStringList({"jp", "eu", "us"});
+        regionPriosExp = QStringList({"eu", "us", "jp"});
         matchRegion("Game D (UE).zip", regionPriosExp);
         settings.regionPrios = QStringList({"eu"});
         regionPriosExp = QStringList({"eu", "jp", "us"});
         matchRegion("Game D' (JUE).zip", regionPriosExp);
 
         settings.regionPrios = QStringList({"eu"});
-        regionPriosExp = QStringList({"eu", "us"});
+        regionPriosExp = QStringList({"us", "eu"});
         matchRegion("Game X (USA, xyz).zip", regionPriosExp);
     }
 
@@ -135,6 +137,10 @@ private slots:
 
         regionPriosExp = QStringList({"us", "wor", "eu", "br", "jp"});
         matchRegion("Game C (USA, World, Europe).zip", regionPriosExp);
+
+        settings.regionPrios = QStringList({"eu"});
+        regionPriosExp = QStringList({"us", "eu"});
+        matchRegion("Game X (USA, xyz).zip", regionPriosExp);
     }
 
     void testRegionsFromFilenameOptionInlinePR253() {
