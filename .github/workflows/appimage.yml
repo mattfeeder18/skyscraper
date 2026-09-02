@@ -1,0 +1,27 @@
+name: Create AppImage
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+
+jobs:
+  AppImage:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04, ubuntu-22.04-arm]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@master
+      - name: Install dependencies
+        run: bash ./supplementary/workflows/deps
+      - name: Bundle AppImage
+        run: bash ./supplementary/workflows/appimage
+      - name: Release
+        uses: softprops/action-gh-release@v3
+        if: "${{ github.event_name != 'workflow_dispatch' }}"
+        with:
+          files: Skyscraper-*.AppImage
